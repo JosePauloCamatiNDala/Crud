@@ -1,0 +1,23 @@
+h1{
+	text-align: center;
+	color:  rgb(20, 65, 138);
+}
+
+a{
+	color: rgb(20, 65, 138);
+	text-decoration: none;
+}
+
+button{
+    border-radius: 500px;
+	width: 15%;
+	padding: 10px;
+	background-color: gold;
+	color:  rgb(20, 65, 138);
+	font-family: serif;
+}
+
+form{
+	font-family: serif;
+	color:  rgb(20, 65, 138);
+}

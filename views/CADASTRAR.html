@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CADASTRO</title>
+</head>
+<body background="IMG_2345.WEBP">
+    <center>
+        <h2>PREENCHA O FORMULÁRIO ABAIXO</h2>
+        <form id="cadastroForm" action="http://localhost:3000/cadastro" method="POST">
+         
+            <label>NOME:<br>
+                <input type="text" name="nome" required><br><br>
+            </label>
+            <label>MORADA:<br>
+                <input type="text" name="morada" required><br><br>
+            </label>
+            <label>TELEFONE:<br>
+                <input type="number" name="telefone" required><br><br>
+            </label>
+            <label>E-MAIL:<br>
+                <input type="email" name="email" required><br><br>
+            </label>
+            <label>PIN:<br>
+                <input type="password" name="pin" required><br><br>
+            </label>
+            <button type="submit">OK</button><br><br>
+        </form>
+    </center>
+
+    <h2>ATUALIZAR REGISTRO</h2>
+    <form id="atualizarForm">
+        <!-- Campos para os dados atualizados -->
+        <input type="text" name="nome" id="nomeAtualizado" required><br><br>
+        <input type="text" name="morada" id="moradaAtualizada" required><br><br>
+        <input type="number" name="telefone" id="telefoneAtualizado" required><br><br>
+        <input type="email" name="email" id="emailAtualizado" required><br><br>
+        <input type="password" name="pin" id="pinAtualizado" required><br><br>
+        <button type="button" onclick="atualizarRegistro()">Atualizar</button>
+    </form>
+
+    <style>
+        button {
+            border-radius: 15px;
+            width: 15%;
+            padding: 10px;
+            background-color: gold;
+        }
+        
+        h2 {
+            color: rgb(20, 65, 138);
+            text-align: center; /* Centraliza o título */
+        }
+
+        form {
+            font-family: serif;
+            color: rgb(20, 65, 138);
+            text-align: center; /* Centraliza o formulário */
+        }
+    </style>
+
+    <script>
+        function atualizarRegistro() {
+            const id = 2; // ID do registro a ser atualizado
+            const nome = document.getElementById("nomeAtualizado").value;
+            const morada = document.getElementById("moradaAtualizada").value;
+            const telefone = document.getElementById("telefoneAtualizado").value;
+            const email = document.getElementById("emailAtualizado").value;
+            const pin = document.getElementById("pinAtualizado").value;
+
+            fetch(`http://localhost:3000/cadastro/${id}`, {
+                method: 'PUT', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ nome, morada, telefone, email, pin })
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // Exibe uma mensagem de sucesso ou erro
+                // Você pode redirecionar o usuário para outra página ou fazer outras ações após a atualização bem-sucedida
+            })
+            .catch(error => {
+                console.error('Erro ao atualizar registro:', error);
+                alert('Erro ao atualizar registro. Por favor, tente novamente.');
+            });
+        }
+    </script>
+</body>
+</html>
